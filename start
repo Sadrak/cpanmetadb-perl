@@ -1,0 +1,19 @@
+#!/bin/bash
+
+CURDIR=`dirname $0`
+RUNDIR=$CURDIR/run
+
+cd $CURDIR
+
+export CACHE=$CURDIR/cache
+mkdir -p $CACHE $RUNDIR
+
+start_server --port=${PORT:-5000} \
+  --interval=5 \
+  --dir=$CURDIR \
+  --signal-on-hup=QUIT \
+  --status-file=$RUNDIR/start_server.status \
+  --pid-file=$RUNDIR/start_server.pid \
+  -- \
+  starman -I$CURDIR/lib --preload-app \
+  $CURDIR/app.psgi

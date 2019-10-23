@@ -7,5 +7,5 @@ gunzip -c $CACHE/02packages.details.txt.gz > $CACHE/02packages.details.txt
 (cd $CACHE && wget -q http://cpanmetadb.plackperl.org/data/packages.txt.gz -N)
 gunzip -c $CACHE/packages.txt.gz > $CACHE/packages.txt
 
-export DSN=dbi:SQLite:dbname=$CACHE/pause.sqlite3
-script/dumpsql.pl
+export DSN=dbi:SQLite:dbname=$CACHE/metadb.sqlite3
+script/update_database.pl

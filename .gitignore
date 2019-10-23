@@ -1,7 +1,0 @@
-MYMETA.*
-/local/
-.vagrant
-/.env
-/.carmel/
-/cache
-/t/cache

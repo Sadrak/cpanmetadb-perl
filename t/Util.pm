@@ -7,7 +7,7 @@ BEGIN {
 }
 
 sub import {
-    unless (-e "$ENV{CACHE}/pause.sqlite3") {
+    unless (-e "$ENV{CACHE}/metadb.sqlite3") {
         system 't/setup';
     }
 }
