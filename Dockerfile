@@ -1,9 +1,9 @@
 FROM perl:latest
 
-ARG UID
-ARG GID
+ARG APPUID
+ARG APPGID
 
-RUN curl -sL --compressed https://git.io/cpm > /usr/local/bin/cpm \
+RUN curl -sL --compressed https://raw.githubusercontent.com/skaji/cpm/master/cpm > /usr/local/bin/cpm \
     && chmod 755 /usr/local/bin/cpm
 
 COPY cpanfile* .
@@ -11,8 +11,8 @@ RUN cpm install --global --no-show-progress --resolver 02packages,https://cpan.m
 
 ENV HOME /app
 ENV USER metadb
-RUN addgroup --gid $GID $USER
-RUN useradd --gid $GID --uid $UID --system --home-dir $HOME --create-home --shell /sbin/nologin -c "perlapp user" $USER
+RUN addgroup --gid $APPGID $USER
+RUN useradd --gid $APPGID --uid $APPUID --system --home-dir $HOME --create-home --shell /sbin/nologin -c "perlapp user" $USER
 WORKDIR $HOME
 
 EXPOSE 5000

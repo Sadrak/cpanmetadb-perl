@@ -34,7 +34,7 @@ sub populate_table {
         return;
     }
 
-    warn "---> Populating $name from $file\n";
+#    print "---> Populating $name from $file\n";
     
     $dbh->do("DROP TABLE IF EXISTS $name") if not $persistent;
 
@@ -69,7 +69,7 @@ SQL
         warn $i, "\n" if ++$i % 100000 == 0;
     }
 
-    warn "Imported $i packages.\n";
+#    print "Imported $i packages.\n";
 }
 
 
